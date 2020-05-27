@@ -47,9 +47,21 @@ let shareController;
 let googleEnabled = false;
 let alertPanel;
 
+
 let main = ($container, config) => {
 
-    if (config.clientId && config.clientId !== "CLIENT_ID") {
+    // const alertDialog = new igv.AlertDialog($container)
+    // alertDialog.$container[0].style.top = '300px';
+    // if (config.clientId && 'CLIENT_ID' !== config.clientId && (window.location.protocol !== "https:" && window.location.host !== "localhost")) {
+    //     const secureUrl = window.location.href.replace("http:", "https:")
+    //     console.warn("To enable Google Drive use https://");
+    //     alertDialog.present(`Google services are disabled.  To enable Google use <a href="${secureUrl}">${secureUrl}</a>`);
+    // }
+
+    const enableGoogle = config.clientId &&
+        'CLIENT_ID' !== config.clientId &&
+        (window.location.protocol === "https:" || window.location.host === "localhost");
+    if (enableGoogle) {
 
         let browser;
         const gapiConfig =
